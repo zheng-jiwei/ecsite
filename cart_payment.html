@@ -1,0 +1,57 @@
+<html>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="https://libs.cmsod.jp/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/script/common.js"></script>
+	<title>カート</title>
+</head>
+<body style="height: auto; min-height: auto;">
+	<div style="text-align:center; width: 100%;">
+		<div id="page-header"></div>
+		<div style="margin-left:auto;margin-right:auto;width:1160px; margin-top:60px; text-align:left">
+			<span id="all_order_products"></span><span style="margin:40px">+</span>
+			<span id="products_tax"></span><span style="margin:40px">+</span>
+			<span id="shipping_fee"></span>
+			<div id="total_price" style="margin-top: 40px"></div>
+		</div>
+		<form method="post" action="/cart_complete.html">
+			<table style="margin-left:auto;margin-right:auto;width:1160px; margin-top:60px">
+				<tr>
+					<td width="50%" class="valign-top">
+						<div style="text-align:left">届先：</div>
+						<div id="shipping_address" style="text-align:left; border:solid 1px lightgray; padding:10px; margin-bottom:10px; width: 450px">
+
+						</div>
+					</td>
+					<td width="50%" class="valign-top">
+						<div style="text-align:left">
+							<div class="title_2_font">支払い方法選択</div>
+							<div><input type="radio" name="payment" checked="checked">カード</div>
+							<div style="border: solid 1px lightgray; padding:15px">
+								<span>カード名義人（半角ローマ字）：</span><div style="margin-bottom:20px"><input type="text" id="card_user_name" value="zheng jiwei" size="50"/></div>
+							<span>カード番号：</span><div style="margin-bottom:20px"><input type="text" id="card_number" value="4242424242424242" size="50"/></div>
+							<span>有効期限：</span>
+								<div style="margin-bottom:20px">
+									<select id="card_expires_month">
+									<option value="1" selected="">01</option><option value="2">02</option><option value="3">03</option><option value="4">04</option><option value="5">05</option><option value="6">06</option><option value="7">07</option><option value="8">08</option><option value="9">09</option><option value="10">10</option><option value="11">11</option><option value="12">12</option></select>
+									<select id="card_expires_year"></select>
+								</div>
+							<span>セキュリティーコード：</span><div style="margin-bottom:20px"><input type="text" id="card_code" value="345" size="50"/></div>
+							</div>
+						</div>
+					</td>
+				</tr>
+			</table>
+			<div style="margin-left:auto;margin-right:auto;width:1160px; margin-top:60px; text-align:right">
+				<a href="/index.html"><input class="checkout-button" type="button" value="ショッピングを続く"></a>
+				<a href="javascript:history.back();"><input class="checkout-button" type="button" value="前に戻る"></a>
+				<input class="checkout-button" type="button" value="注文確認" onclick="add_payment_info();">
+			</div>
+		</form>
+		<div id="page-footer"></div>
+		<script src="/script/last.js"></script>
+		<script src="/script/payment.js"></script>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,27 @@
+<html>
+<head>
+	<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script type="text/javascript" src="https://libs.cmsod.jp/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script type="text/javascript" src="/script/common.js"></script>
+	<title>カート</title>
+</head>
+<body style="height: auto; min-height: auto;">
+	<div style="text-align:center; width: 100%;">
+		<div id="page-header"></div>
+		<div class="title_2_font" style="margin-left:auto;margin-right:auto;width:1160px;text-align:left;margin-top:60px">以下の買い物かごに商品が入っています</div>
+		<form id="cart_form" method="post" action="/cart_shipping.html">
+		<table style="margin-left:auto;margin-right:auto;width:1160px; margin-top:60px" id="checkout_list">
+			
+		</table>
+			<div  style="margin-left:auto;margin-right:auto;width:1160px; margin-top:60px;text-align:right">
+				<a href="/index.html"><input class="checkout-button" type="button" value="ショッピングを続く"></a>
+				<input class="checkout-button" type="submit" value="次へ進む">
+			</div>
+		</form>
+		<div id="page-footer"></div>
+		<script src="/script/last.js"></script>
+		<script src="/script/cart.js"></script>
+	</div>
+</body>
+</html>

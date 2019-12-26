@@ -1,0 +1,130 @@
+input[type="text"] {
+	opacity: 0.54;
+	height: 26px;
+	padding: 3px 7px;
+	line-height: normal;
+	border-radius: 3px;
+	font
+}
+
+.title_1_font {
+	font-size: 32px;
+	text-align: left;
+}
+
+.title_2_font {
+	font-size: 22px;
+	text-align: left;
+	margin-bottom: 20px;
+}
+
+.checkout-button {
+	width: 200px;
+	height: 30px;
+	background-color: orange;
+	box-shadow:0px 0px 2px;
+}
+.navi_box {
+    text-align: center;
+    width: 1160px;
+    height: 40px;
+    font-size: 12px;
+	}
+
+
+.navi_box ul li { 
+		display: inline;
+	}
+.valign-top {
+		vertical-align: top;
+	}
+	
+.width10 {
+	width: 10%;
+	}
+	
+	width: 20%;
+	}
+	
+.width70 {
+		width: 70%;
+	}
+
+.width80 {
+		width: 80%;
+	}
+
+.image-size {
+		width: 300px;
+		height:300px
+	}
+	
+.image-size-small {
+		width: 100px;
+		height: 100px;
+		margin-top: 40px;
+		margin-left: 20px
+	}
+	
+.image-link:hover,
+.checkout-button:hover
+{
+	cursor: pointer
+}
+
+.select-cell,
+.zero-invented {
+	padding-left: 20px;
+	padding-right: 20px;
+}
+
+.zero-invented {
+	width: 20px;
+	height:20px
+}
+
+.select-table  {
+	margin-top: 30px;
+	border: solid 1px blue;
+}
+
+.select-table-title {
+	background-color: lightgray;
+}
+
+
+#tstart-toolbar-bottom {
+            position: fixed;
+            bottom: 0;
+            color: #3E3E3E;
+            left: 0;
+            text-align: left;
+            width: 100%;
+            z-index: 10000;
+            _position: absolute; /* for IE6 */
+            _top: expression(documentElement.scrollTop + documentElement.clientHeight-this.offsetHeight); /* for IE6 */
+            overflow: visible;
+        }
+
+#tstart-toolbar-bottom .tstart-right {
+		text-align: center;
+		background-color: #fff;
+		box-shadow: 0 5px 10px rgba(0,0,0,.25);
+                float: right; 
+                width: 100px;
+				height: 60px;
+                margin: 5px 5px 5px 5px;
+                padding: 5px;
+                border: 1px solid silver;
+                box-shadow: 0px 0px 5px #000;
+                -moz-box-shadow: 0px 0px 5px #000;
+                -webkit-box-shadow: 0px 0px 5px #000;
+}
+
+.spr-review {
+	text-align:left;
+}
+
+.spr-container {
+	border-color: white !important;
+}

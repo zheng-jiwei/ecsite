@@ -1,0 +1,109 @@
+<html>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+<script type="text/javascript" src="https://libs.cmsod.jp/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+	<script src="/script/common.js"></script>
+	<title>カート</title>
+</head>
+	
+	
+<body style="height: auto; min-height: auto;">
+	<div style="text-align:center; width: 100%;">
+			<div id="page-header"></div>
+		<div class="title_2_font" style="margin-left:auto;margin-right:auto;width:1160px;text-align:left;margin-top:60px">注文商品</div>
+		<table style="margin-left:auto;margin-right:auto;width:1160px; margin-top:60px" id="products_list">
+		</table>
+		<div style="margin-left:auto;margin-right:auto;width:1160px;text-align:left;margin-top:60px">
+			<div style="float:left; text-align:left; border:solid 1px gray;padding:20px" id="shipping_address"></div>
+		<div style="float:right; text-align:left; border:solid 1px gray;padding:20px;" id="original_address"></div>
+		</div>
+		<div style="clear:both"></div>
+		<div id="page-footer"></div>
+	</div>
+			<script src="/script/last.js"></script>
+	<script>
+
+let checkout_id=decodeURIComponent(get_value_from_cookie("order_token"));
+//delete_cookie("order_id");
+if(checkout_id != ""){
+	query_checkout_info(checkout_id, function(res){
+		if(res.errors){
+			alert(res.errors[0].message);
+		}else{
+			let result = res.data.node;
+			let items = result.lineItems.edges;
+			let address = result.shippingAddress;
+			let price = result.totalPriceV2.amount;
+			let currency =  result.currencyCode;
+			let productsList = [];
+			
+			for(let i=0; i<items.length; i++){
+				let options = items[i].node.variant.product.options;
+				let str_option = items[i].node.variant.title;
+				if(options.length == 1 && options[0].values.length == 1){
+					str_option = "";
+				}
+	                productsList.push("<tr>\n" +
+                    "        <td className=\"width20 valign-top\">\n" +
+                    "            <div style=\"text-align:left\"><img src=\"" + items[i].node.variant.image.originalSrc + "\" width=\"100px\"/></div>\n" +
+                    "        </td>\n" +
+                    "        <td className=\"width70 valign-top\">\n" +
+                    "            <div style=\"text-align:left\">商品名："+ items[i].node.title +"</div>\n" +
+                    "            <div style=\"text-align:left\">商品オプション："+ str_option +"</div>\n" +
+                    "            <div style=\"text-align:left\">単価："+ Number(items[i].node.variant.priceV2.amount).toLocaleString('ja-JP', { style: 'currency', currency: currency})+"</div>\n" +
+                    "            <div style=\"text-align:left\">数量：<span>"+ items[i].node.quantity +"</span></div>\n" +
+                    "        </td>\n" +
+                    "        <td className=\"width10\">\n" +
+                    "            <div>" + Number(parseInt(items[i].node.variant.priceV2.amount) * items[i].node.quantity).toLocaleString('ja-JP', { style: 'currency', currency:currency })+ "</div>\n" +
+                    "    </tr>");
+			}
+            productsList.push("<tr><td colspan=\"3\"><div style=\"border-top: solid 1px lightgray\"></div></td></tr>\n" +
+                "<tr>\n" +
+                "<td class=\"width20 valign-top\"><div style=\"text-align:left\"></div></td>\n" +
+                "<td class=\"width80 valign-top\"></td>\n" +
+                "<td>税：<span id=\"all_tax\">"+ Number(result.totalTaxV2.amount).toLocaleString('ja-JP', { style: 'currency', currency:currency }) +"</span>  </td>\n" +
+                "</tr>\n" +
+                "<tr>\n" +
+                "<td colspan=\"3\"><div style=\"border-top: solid 1px lightgray\"></div></td>\n" +
+                "</tr>\n" +
+                "<tr>\n" +
+                "<td></td><td></td><td>送料："+ Number(result.shippingLine.priceV2.amount).toLocaleString('ja-JP', { style: 'currency', currency:currency }) +"</td>\n" +
+                "</tr>\n" +
+				 "<tr>\n" +
+                "<td colspan=\"3\"><div style=\"border-top: solid 1px lightgray\"></div></td>\n" +
+                "</tr>\n" +
+                "<tr>\n" +
+                "<td></td>\n" +
+                "<td><div style=\"float:right;\">合計：</div></td>\n" +
+                "<td><span id=\"total_price\" style=\"font-size:18px\">"+ Number(result.totalPriceV2.amount).toLocaleString('ja-JP', { style: 'currency', currency:currency }) +"</span></td>\n" +
+                "</tr>"
+			);
+			document.getElementById("products_list").innerHTML = productsList.join("\n");
+			
+			let strAddress =  "<div>届先：</div>";
+			strAddress += "<div><span>氏名：</span>"+ address.firstName +"&nbsp"+ address.lastName +"</div>";
+			strAddress += "<div><span>会社名："+ address.company +"</div>";
+			strAddress += "<div><span>住所：</span>";
+			strAddress += address.address2=="" ?  "" : address.address2+",&nbsp";
+			strAddress += address.address1=="" ?  "" : address.address1+",&nbsp";
+			strAddress += address.province+",&nbsp"+address.country +"</div>";
+			strAddress +="<div>"+ address.zip +"</div>";
+			strAddress +="<div><span>電話番号：</span>"+ address.phone +"</div>";
+			document.getElementById("shipping_address").innerHTML =strAddress;
+
+			let other_info = "<div>メール：" + result.email + "</div>";
+			other_info += "<div>注文日時：" +result.completedAt + "</div>";
+			other_info += "<div>注文番号：" + result.order.name+ "</div>";
+			document.getElementById("original_address").innerHTML = other_info;
+			delete_cookie("checkoutid");
+			delete_cookie("order_token");
+		}
+	});
+}else{
+	document.getElementById("shipping_address").style.display="none";
+	document.getElementById("original_address").style.display="none";
+}
+
+	</script>
+</body>
+</html>
