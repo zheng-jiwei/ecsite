@@ -2,11 +2,11 @@
 <head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="https://libs.cmsod.jp/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="/script/common.js"></script>
+	<script src="/ecsite/script/common.js"></script>
 	<title>カート</title>
 </head>
-	
-	
+
+
 <body style="height: auto; min-height: auto;">
 	<div style="text-align:center; width: 100%;">
 			<div id="page-header"></div>
@@ -20,7 +20,7 @@
 		<div style="clear:both"></div>
 		<div id="page-footer"></div>
 	</div>
-			<script src="/script/last.js"></script>
+			<script src="/ecsite/script/last.js"></script>
 	<script>
 
 let checkout_id=decodeURIComponent(get_value_from_cookie("order_token"));
@@ -36,7 +36,7 @@ if(checkout_id != ""){
 			let price = result.totalPriceV2.amount;
 			let currency =  result.currencyCode;
 			let productsList = [];
-			
+
 			for(let i=0; i<items.length; i++){
 				let options = items[i].node.variant.product.options;
 				let str_option = items[i].node.variant.title;
@@ -79,7 +79,7 @@ if(checkout_id != ""){
                 "</tr>"
 			);
 			document.getElementById("products_list").innerHTML = productsList.join("\n");
-			
+
 			let strAddress =  "<div>届先：</div>";
 			strAddress += "<div><span>氏名：</span>"+ address.firstName +"&nbsp"+ address.lastName +"</div>";
 			strAddress += "<div><span>会社名："+ address.company +"</div>";

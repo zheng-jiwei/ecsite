@@ -9,7 +9,7 @@ function logout() {
     if (result.data.customerAccessTokenDelete.userErrors.length > 0) {
       alert(result.data.customerAccessTokenDelete.userErrors[0].message);
     } else {
-      window.location.href = "/index.html";
+      window.location.href = "/ecsite/index.html";
     }
   });
 }

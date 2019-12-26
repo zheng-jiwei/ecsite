@@ -2,7 +2,7 @@
 <head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
 	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
 <script type="text/javascript" src="https://libs.cmsod.jp/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-	<script src="/script/common.js"></script>
+	<script src="/ecsite/script/common.js"></script>
 	<title>カート</title>
 </head>
 <body style="height: auto; min-height: auto;">
@@ -23,7 +23,7 @@ let orderid = get_url_parameter(window.location.href, "oid");
 //let email = get_url_parameter(window.location.href, "email");
 let token = get_value_from_cookie("shopifyuser");
 if(token == ""){
-	window.location.href="/customer/login.html?redirect=" + encodeURIComponent(window.location.href);
+	window.location.href="/ecsite/customer/login.html?redirect=" + encodeURIComponent(window.location.href);
 }else{
 if(orderid != ""){
 	query_customer_order(token, "query: \"id:"+ orderid +"\", first:1", function(res){
@@ -39,7 +39,7 @@ if(orderid != ""){
 			let price = result.totalPrice;
 			let currency =  result.currencyCode;
 			let productsList = [];
-			
+
 			for(let i=0; i<items.length; i++){
 				let options = items[i].node.variant.product.options;
 				let str_option = items[i].node.variant.title;
@@ -82,7 +82,7 @@ if(orderid != ""){
                 "</tr>"
 			);
 			document.getElementById("products_list").innerHTML = productsList.join("\n");
-			
+
 			let strAddress =  "<div>届先：</div>";
 			strAddress += "<div><span>氏名：</span>"+ address.firstName +"&nbsp"+ address.lastName +"</div>";
 			strAddress += "<div><span>会社名："+ address.company +"</div>";
