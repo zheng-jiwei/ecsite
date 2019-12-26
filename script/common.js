@@ -75,7 +75,6 @@ function http_get_payment_token(data, account_id, callback) {
     headers: {
       "Stripe-Account": account_id,
       "Authorization": "Bearer sk_test_IENOkAEYLJP5avJFzHgKr2wg00YNXgpSVx",
-      //"Authorization": "Bearer sk_live_MUaLJhatGxw58RsuVSLUwUnL00gqtRfjou",
       "Content-Type": "application/x-www-form-urlencoded",
     },
     data: data,
