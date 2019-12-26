@@ -87,6 +87,26 @@ function http_get_payment_token(data, account_id, callback) {
     callback(error)
   });
 }
+
+
+function http_get_common(url, data, callback) {
+  $.ajax({
+    type: 'POST',
+    timeout: 5000,
+    url: url,
+    headers: {
+      "Content-Type": "application/json",
+    },
+    crossDomain: true,
+    data: data,
+    dataType: 'json',
+    cache: false,
+  }).done(function(result) {
+    callback(result);
+  }).fail(function(error) {
+    callback(error)
+  })
+}
 /*
 // /shopify/channel/query -> add payment
 // /shopify/channel/query  -> get country/ province

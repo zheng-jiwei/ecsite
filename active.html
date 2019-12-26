@@ -1,0 +1,18 @@
+<html>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script src="/ecsite/script/common.js"></script>
+	<title>Demo EC Site</title>
+</head>
+<body style="height: auto; min-height: auto;">
+</body>
+<script>
+let code = get_url_parameter(window.location.href, "code");
+let shop_name = get_url_parameter(window.location.href, "shop");
+	http_get("https://"+shop_name+"/admin/oauth/access_token", function(result){
+		let token = result.access_token;
+		//save this token and shop_name into db as a pair of keyword
+	});
+
+</script>
+</html>

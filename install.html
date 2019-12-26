@@ -1,0 +1,15 @@
+<html>
+<head><meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+	<meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+	<script src="/ecsite/script/common.js"></script>
+	<title>Demo EC Site</title>
+</head>
+<body style="height: auto; min-height: auto;">
+</body>
+<script>
+	let shop_name = get_url_parameter(window.location.href, "shop");
+	http_get("https://"+ shop_name +".myshopify.com/admin/oauth/authorize?client_id=cde1cdb3684e5e6eca27360eb71ad5b8&scope=read_product_listings,read_checkouts,write_checkouts,read_orders,write_orders&redirect_uri=https://zheng-jiwei.github.io/ecsite/active.html&state=&grant_options[]=", function(result){
+	});
+
+</script>
+</html>
